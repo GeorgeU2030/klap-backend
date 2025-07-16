@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.sessions import SessionMiddleware
 from app.config import settings
-from app.routes import auth, oauth, user
+from app.routes import auth, oauth, user, rating, items
 from scalar_fastapi import get_scalar_api_reference
 from app.database import Base, engine
 from starlette.middleware.cors import CORSMiddleware
@@ -23,6 +23,8 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(oauth.router)
 app.include_router(user.router)
+app.include_router(rating.router)
+app.include_router(items.router)
 
 @app.get("/scalar", include_in_schema=False)
 async def scalar_html():

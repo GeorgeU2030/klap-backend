@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy.orm import relationship
 from app.database import Base
 
 class User(Base):
@@ -11,3 +12,5 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     is_oauth = Column(Boolean, default=False)
     google_id = Column(String, nullable=True)
+
+    ratings = relationship("Rating", back_populates="user")
